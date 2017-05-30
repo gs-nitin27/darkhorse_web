@@ -631,7 +631,24 @@ color:#fff;
             disableFocusListener: false,
           }
         });
-       
+       var getResources = function()
+       {//alert("fffdfdffd");
+         $.ajax({url: "http://liveapp.getsporty.in/getSportyLite/litecontroller.php?act=gs_list&token_id=dhs2016",crossDomain: true ,success: function(result){
+        //alert(JSON.stringify(result));
+        var data = JSON.parse(result);
+        data = data.data;
+        data.forEach(function(data){
+ 
+               alert(data.id);
+
+
+        });
+    }});
+        
+
+       }
+getResources();
+
       }); /*ready*/
     </script>
 <!-- JS end -->	
