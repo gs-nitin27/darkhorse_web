@@ -274,31 +274,14 @@ color:#fff;
           <!-- PAGINATION -->
           <div class="row mt-0">
             <nav class="blog-pag">
-              <ul class="pagination pag2 m-0">
-              <li><a href="#"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></a></li>
+              <ul class="pagination pag2 m-0" id="paginate">
+              
               </ul>
             </nav>
           </div>
           
         </div>
-
-
-
-		
-	
-		
-		
-
-
-
-
- 
- <footer id="footer4" class="page-section pt-95 pb-50 footer2-black">
+       <footer id="footer4" class="page-section pt-95 pb-50 footer2-black">
           <div class="container">
             <div class="row">
             
@@ -492,35 +475,101 @@ color:#fff;
             disableFocusListener: false,
           }
         });
-       var getResources = function()
-       {//alert("fffdfdffd");
+         var data = '';
          $.ajax({url: "http://liveapp.getsporty.in/getSportyLite/litecontroller.php?act=gs_list&token_id=dhs2016",crossDomain: true ,success: function(result){
-        //alert(JSON.stringify(result));
-        var data = JSON.parse(result);
-        data = data.data;
-        var temp = '';
-      // var images ='';
-        data.forEach(function(data){
+             var data = JSON.parse(result);
+             data = data.data;
+             id = 1;
+          getResources(data,id);
+         }});
 
-            //console.log(data);
-          // images = '<img class="port-main-img" src="http://getsporty.in/staging/uploads/event/'+data.image+'" alt="img">';
-           //alert(images);
+  //     }
+
+       var getResources = function(data,id)
+       { 
+           
+        var temp = '';
+        create_pagination(data.length);
+        i= 1; 
+        data.forEach(function(data){
+        if(i >= (8*(id-1))  && (i < id*8)){
 
           temp +='<div class="col-md-12 custom-wrap wow fadeIn pb-90" style="visibility: visible; animation-name: fadeIn;"><div class="col-md-5"><div class="post-prev-img"><div class="lightbox-item"><a href="http://portal.getsporty.in/uploads/resources/'+data.image+'" class="lightbox"><div class="port-img-overlay"><img class="port-main-img" src="http://portal.getsporty.in/uploads/resources/'+data.image+'" alt="img"></div><div class="port-overlay-cont"><div class="port-btn-cont"><div aria-hidden="true" class="icon_search"></div></div></div></a></div></div></div><div class="col-md-7"><div class="post-prev-title"><h3><a href="detail-blog.html"><strong>'+data.title+'</strong></a></h3></div><div class="post-prev-info">'+data.date_created+'<span class="slash-divider">/</span><a href="#">'+data.location+'</a><span class="slash-divider">/</span><a href="#">'+data.topic_of_artical+'</a>, <a href="#">'+data.sport+'</a></div><div class="mb-30">'+data.summary+'...</div>   <div class="post-prev-more-cont clearfix"><div class="post-prev-more left"><a href="detail-blog.html" class="font-poppins">Read More</a></div> <div class="right"><a href="blog-single-sidebar-right.html#comments" class="post-prev-count"><span aria-hidden="true" class="icon_comment_alt"></span><span class="icon-count">21</span></a><a href="http://themeforest.net/user/abcgomel/portfolio?ref=abcgomel" class="post-prev-count"><span aria-hidden="true" class="icon_heart_alt"></span><span class="icon-count">53</span></a> <a href="#" class="post-prev-count dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span aria-hidden="true" class="social_share"></span></a><ul class="social-menu dropdown-menu dropdown-menu-right" role="menu"><li><a href="#"><span aria-hidden="true" class="social_facebook"></span></a></li><li><a href="#"><span aria-hidden="true" class="social_twitter"></span></a></li><li><a href="#"><span aria-hidden="true" class="social_dribbble"></span></a></li></ul></div></div></div></div>'; 
         //  console.log(temp)           ;
-
-        });
-             $("#id2").html(temp);
-    }});
         
+      }
+        i++;
+      });
+             $("#id2").html(temp);
+   // }});
+      function create_pagination(size)
+    {
 
-       }
-getResources();
+    var limit = size/8;
+    var page_no  = 0;
+    var paginate_header = '<li><a href="javascript:void(0)"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></a></li>';
+    for(i=1;i<limit;i++)
+     {
+     
+     page_no += '<li><a href="javascript:void(0)" id="'+i+'" onclick="getData(this.id)">'+i+'</a></li>';
 
-      }); /*ready*/
+     }
+    var paginate_footer = '<li><a href="javascript:void(0)"><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></a></li>';
+    var pagination = paginate_header+page_no+paginate_footer;
+    $('#paginate').html(pagination);
+    }
+
+    getData = function(id)
+    {  
+     getResources(data,id);
+    }
+
+  }
+   
+  }); /*ready*/
+
+
+
+
+   /****************/
+   // Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+   /****************/
+
+
     </script>
+    
 <!-- JS end -->	
 	</body>
 
 <!-- Mirrored from abcgomel.ru/elementy/index-cars.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Mar 2017 06:13:30 GMT -->
 </html>		
+<!-- <li><a href="#"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></a></li> -->
