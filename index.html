@@ -333,7 +333,7 @@ We are in this arena to make a different as <strong>We are all for Sport</strong
                     </div>
                     <h3 class="f"><strong>Organize</strong></h3>
                   </div>
-                  <div class="text-center f fq">
+                  <div class="text-center f fq a">
                     We at GetSporty believe in a sport culture that not only benefits our generation but we possess this
 
 unique idea that a country whose ecosystem revolves around a good sport system offers a much
@@ -365,7 +365,7 @@ colleagues and team building and most important of all, sport allows us to enjoy
                     </div>
                     <h3 class="f"><strong>Sports Education</strong></h3>
                   </div>
-                  <div class="text-center f fq">
+                  <div class="text-center f fq b">
                     We act as a sports education as well as a sports job portal. We act as a bridge between all the institutions
 
 that provide sports courses and provide sports certificates from graduation to postgraduate studies. So
@@ -403,7 +403,7 @@ dealings and you may become the coach that give instructions to a top quality pl
                     </div>
                     <h3 class="f"><strong>Technology</strong></h3>
                   </div>
-                  <div class="text-center f fq">
+                  <div class="text-center f fq c">
                   The Technology has shrinked the world into a tiny little room where one can connect with anybody
 
 irrespective of his place in the world (unless you live on an isolated island somewhere in the Antarctica).
@@ -447,7 +447,7 @@ your business interests in sport.
                     </div>
                     <h3 class="f"><strong>Partner</strong></h3>
                   </div>
-                  <div class="text-center f fq">
+                  <div class="text-center f fq d">
                     This is a unique concept. We are in process of
 
 creating a place where one can leWe perform as a bridge between a sport enthusiast who knows all about his dreams but doesn&#39;t know
@@ -868,10 +868,18 @@ then we’ll get in touch with you. </p>
           }
         });
  
-var myDiv = $('.text-center.fq');
-myDiv.text(myDiv.text().substring(0,180) + ' [...]')
+// var myDiv = $('.fq');
+// myDiv.text(myDiv.text().substring(0,180) + ' [...]')
  
-      }); /*ready*/
+var myDiv1 = ['a','b','c','d'];
+var cstyle = '';
+myDiv1.forEach(function(myDiv1){
+cstyle = $('.'+myDiv1+'');
+cstyle.text(cstyle.text().substring(0,180) + ' [...]');
+
+
+});
+}); /*ready*/
 
 
       function saveEmail()
