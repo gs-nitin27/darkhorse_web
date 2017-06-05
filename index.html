@@ -325,7 +325,7 @@ We are in this arena to make a different as <strong>We are all for Sport</strong
  <div class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;"> 
  <h2 class="section-title2 font-light mb-45 text-center p-0 f"><strong>What can we do for you?</strong></h2> </div>
 
-              <div class="col-xs-12 col-sm-3 col-md-3">
+              <div id="text" class="col-xs-12 col-sm-3 col-md-3">
                 <div class="mb-70 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
                   <div class="fes17-title-cont">
                     <div class="fes17-box-icon">
@@ -354,7 +354,7 @@ We believe that sport is the best way  for creating a sustainable competitive a
 
 colleagues and team building and most important of all, sport allows us to enjoy our life with work.
                   </div>
-                  <a class="button medium thin gray-light hover-dark" href="#">Know more</a>
+                  <a class="button medium thin gray-light hover-dark" href="#" id="0" onclick="knowMore(this.id)">Know more</a>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-3 col-md-3">
@@ -392,7 +392,7 @@ the field of sport because you mind be the person who takes care of a top notch 
 
 dealings and you may become the coach that give instructions to a top quality player.
                   </div>
-                  <a class="button medium thin gray-light hover-dark" href="#">Know more</a>
+                  <a class="button medium thin gray-light hover-dark" href="#" id="1" onclick="knowMore(this.id)">Know more</a>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-3 col-md-3">
@@ -436,7 +436,7 @@ of meeting the people from your own field only. Nothing more and nothing less. W
 
 your business interests in sport. 
                   </div>
-                  <a class="button medium thin gray-light hover-dark" href="#">Know more</a>
+                  <a class="button medium thin gray-light hover-dark" href="#" id="2" onclick="knowMore(this.id)">Know more</a>
                 </div>
               </div>
 	    <div class="col-xs-12 col-sm-3 col-md-3">
@@ -478,7 +478,7 @@ holiday as well. A Sports Retreat for professional Athletes and non-
 
 sporty alike.  
                   </div>
-                  <a class="button medium thin gray-light hover-dark" href="#">Know more</a>
+                  <a class="button medium thin gray-light hover-dark" href="#" id="3" onclick="knowMore(this.id)">Know more</a>
                 </div>
               </div>
               
@@ -873,16 +873,24 @@ then we’ll get in touch with you. </p>
  
 var myDiv1 = ['a','b','c','d'];
 var cstyle = '';
+var dataDiv = [];
+i = 0;
 myDiv1.forEach(function(myDiv1){
 cstyle = $('.'+myDiv1+'');
+dataDiv[i] = cstyle.text(); 
 cstyle.text(cstyle.text().substring(0,180) + ' [...]');
-
-
+i++;
 });
+
+knowMore = function(id){
+
+  alert(dataDiv[id]);return;
+
+  }
+
 }); /*ready*/
 
-
-      function saveEmail()
+function saveEmail()
 {
 
 var email = $('#email').val();
