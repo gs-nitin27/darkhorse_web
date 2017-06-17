@@ -1,4 +1,6 @@
 var myDiv1 = ['a','b','c','d','e'];
+var dataDiv = [];
+
   jQuery(document).ready(function() {
           
         jQuery("#rev_slider_280_1").show().revolution({
@@ -45,7 +47,6 @@ var myDiv1 = ['a','b','c','d','e'];
  
 
 var cstyle = '';
-var dataDiv = [];
 i = 0;
 myDiv1.forEach(function(myDiv1){
 cstyle = $('.'+myDiv1+'');
@@ -57,7 +58,7 @@ i++;
 
 });
 
-localStorage.setItem("obj", JSON.stringify(dataDiv));
+
 
 
 
@@ -68,24 +69,19 @@ localStorage.setItem("obj", JSON.stringify(dataDiv));
 
 var data3 = '';
 knowMore = function(id){
-
 window.open('icon_detail.html?n='+id+'');
- 
+localStorage.setItem("obj", JSON.stringify(dataDiv));
 }
 
  showData = function(){
-  var data1=[];
+ 
   var data = localStorage.getItem('obj');
   var results = (window.location.href); 
   var url = new URL(results);
   var c = url.searchParams.get("n");
   
   data = JSON.parse(data);
-  
-  //alert(data);
-
-
-var text1  = data[c].split("|");
+  var text1  = data[c].split("|");
 
 var topic=text1[0];
 var details=text1[1];
