@@ -40,7 +40,7 @@
 <!-- CSS -->
     <!--  GOOGLE FONT -->		
     <link href="https://fonts.googleapis.com/css?family=Poppins:500,600,300%7COpen+Sans:400,300,700" rel="stylesheet" type="text/css">
-   <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Dosis" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Dosis|Bubbler+One" rel="stylesheet">
     
     <!-- REVOSLIDER CSS SETTINGS -->
     
@@ -729,17 +729,13 @@ function valname(){
      {
         $( '#name' ).css("border-bottom-color","red");
          n++;
-
-         
+    
      }
      else{
          $( '#name' ).css("border-bottom-color","green");  
         
      }
 
-
-
-     
   if(atpos<1 || dotpos<atpos+2 || dotpos+2>=email1.length)
      {
         $( '#email' ).css("border-bottom-color","red");
@@ -769,10 +765,6 @@ if(n==0)
 
 }
    
-      
-
-
-
 
 
 function saveEmail()
@@ -781,39 +773,61 @@ function saveEmail()
     if(!valname()){
       return false;
     }
-    else{console.log("true");
+    else{
        $( "#img" ).show();
 
-var email = $('#email').val();
-var name = $('#name').val();
-var message = $('#message').val();
+
+var msg = '';
+
+
+var data={"name":$('#name').val(), "email":$('#email').val(),"message":$('#message').val(),"medium":"W"};
 
 $.ajax({
 
-url:'welcome.php',
+url:'http://liveapp.getsporty.in/getSportyLite/contact_us.php?act=contact_us&token_id=dhs2016',
 method:'POST',
-data:'act=sendEmail&email='+email+'&name='+name+'&message='+message,
+data: JSON.stringify(data),
 datatype:"text",
+  timeout: 10000,
 success:function(data)
 {
- var msg = '';
+ 
  $( "#img" ).hide();
-if(data)
+var result=JSON.parse(data);
+
+
+
+if(result.status==1)
 {  
 
- msg = 'Thanks For showing Interest';
-    //alert('Thanks for showing interest in us');
+ msg = 'Thanks For Showing Interest';
+$("#name").val(''); 
+$("#email").val('');    
+$("#message").val('');  
+$( '#name' ).css("border-bottom-color","#ccc");
+$( '#email' ).css("border-bottom-color","#ccc");
+$( '#message' ).css("border-bottom-color","#ccc"); 
+
 }else{
       
- msg =  'server error! Please try again later';
-     
-}
-var message = '<div class="modal-dialog"><div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Modal Header</h4> </div> <div class="modal-body"> <p>'+msg+'</p> </div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> </div> </div> </div>';
 
-    $('#myModal').html(message);
+     msg =  'Server error! Please try again later';
+     }
+var message = '<div class="modal-dialog"><div class="modal-content" style="border:none; border-radius:2px;background-color:whitesmoke;"><div class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button>  <p class="modal-style">'+msg+'</p> </div> <div class="modal-footer" style="border-top:none;padding-top:0px;"> <button type="button" style="border-radius:2px;" class="btn btn-default" data-dismiss="modal">Close</button> </div> </div> </div>';
+
+$('#myModal').html(message);
      $('#myModal').modal('show');
 
 },
+error:function()
+{$( "#img" ).hide();
+ msg =  'Server error! Please try again later';
+ var message = '<div class="modal-dialog"><div class="modal-content" style="border:none; border-radius:2px;background-color:whitesmoke;"><div class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button>  <p class="modal-style">'+msg+'</p> </div> <div class="modal-footer" style="border-top:none;padding-top:0px;"> <button type="button" style="border-radius:2px;" class="btn btn-default" data-dismiss="modal">Close</button> </div> </div> </div>';
+
+$('#myModal').html(message);
+     $('#myModal').modal('show');
+
+}
 
 })
     }
